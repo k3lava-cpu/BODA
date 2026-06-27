@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكاننا السري الخاص ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-pink: #ff2a5f;
+            --purple-glow: #7928ca;
+            --bg-dark: #0d0b14;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            filter: blur(150px);
+            top: 10%;
+            left: 10%;
+            z-index: 1;
+            animation: pulseBg 8s infinite alternate;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: var(--purple-glow);
+            border-radius: 50%;
+            filter: blur(160px);
+            bottom: 10%;
+            right: 10%;
+            z-index: 1;
+            animation: pulseBg 10s infinite alternate-reverse;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.3); opacity: 0.9; }
+        }
+
+        .bg-hearts {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2; pointer-events: none;
+        }
+
+        .container {
+            background: rgba(20, 15, 30, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 42, 95, 0.25);
+            padding: 45px 35px;
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgba(255, 42, 95, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            max-width: 530px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-size: 34px;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(255, 42, 95, 0.6);
+        }
+
+        p {
+            color: #e0e0e6;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .input-group { margin: 25px 0; }
+
+        .custom-input {
+            width: 100%; padding: 15px 22px;
+            border: 2px solid rgba(255, 42, 95, 0.3);
+            background: rgba(13, 11, 20, 0.8);
+            border-radius: 50px; font-size: 18px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            outline: none; text-align: center;
+            transition: all 0.3s ease; color: #fff;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .custom-input:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 95, 0.5), inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #7928ca, var(--neon-pink));
+            color: white; border: none; padding: 15px 50px;
+            font-size: 19px; font-weight: 700; border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(255, 42, 95, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(255, 42, 95, 0.7);
+        }
+
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+
+        .romantic-text p {
+            opacity: 0;
+            animation: textFadeIn 1.2s ease forwards;
+        }
+
+        @keyframes textFadeIn { to { opacity: 1; } }
+
+        .heart-sparkle {
+            position: absolute; color: var(--neon-pink);
+            animation: floatUp 4.5s infinite linear; bottom: -50px; opacity: 0;
+            text-shadow: 0 0 10px rgba(255, 42, 95, 0.8);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            10% { opacity: 0.9; }
+            100% { transform: translateY(-105vh) scale(1.3); opacity: 0; }
+        }
+
+        .error-msg {
+            color: #ff4a76; font-size: 16px; margin-top: 10px;
+            display: none; font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 74, 118, 0.3);
+        }
+
+        .music-toggle {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,42,95,0.3);
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; color: white; z-index: 100; transition: all 0.3s;
+        }
+        .music-toggle:hover { background: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
+    </style>
+</head>
+<body>
+
+    <div class="music-toggle" onclick="toggleMusic()">🎵</div>
+    
+    <!-- ملف الأغنية song.mp3 -->
+    <audio id="bgAudio" loop src="song.mp3"></audio>
+
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <div class="container">
+        
+        <!-- شاشة 1: التاريخ -->
+        <div id="step-date" class="step-content active">
+            <h1>أهلاً يا أميرتي ❤️</h1>
+            <p>المكان ده مفيش حد في الكون ينفع يشوفه غيرك، اكتب تاريخ ميلادنا السري الخاص بيكي ✨</p>
+            <div class="input-group">
+                <input type="text" id="dateInput" class="custom-input" placeholder="اكتبي التاريخ هنا (14/11)">
+                <div id="dateError" class="error-msg">امممم.. التاريخ ده مش مظبوط! ركزي تاني يا جميل 😉</div>
+            </div>
+            <button class="btn" onclick="validateDate()">تأكيد التاريخ ✨</button>
+        </div>
+
+        <!-- شاشة 2: الاسم -->
+        <div id="step-name" class="step-content">
+            <h1>خطوة واحدة قريبة.. 🌸</h1>
+            <p>التاريخ صح! بس قوليلي اسمك الغالي إيه عشان نفتح البوابة السرية؟</p>
+            <div class="input-group">
+                <input type="text" id="nameInput" class="custom-input" placeholder="اكتبي اسمك هنا...">
+                <div id="nameError" class="error-msg">الاسم ده مش اسم أميرتي المظبوطة! حاولي تاني 👀</div>
+            </div>
+            <button class="btn" onclick="validateName()">دخول للمفاجأة 💖</button>
+        </div>
+
+        <!-- شاشة 3: المفاجأة والكلام الطويل الجاحد -->
+        <div id="step-secret" class="step-content">
+            <h1 style="color: var(--neon-pink); font-size: 30px;">إلى أميرتي الغالية ياسمين 👑</h1>
+            <div class="romantic-text">
+                <p style="animation-delay: 0.5s;">كل ثانية وإنتي منورة دنيتي، وكل يوم بيعدي عليا وإنتي معايا بيكون أجمل يوم في حياتي. 💖</p>
+                <p style="animation-delay: 1.8s;">أنا بجد بحبك جداً وبخاف عليكي أكتر من أي حاجة في الكون، ولما بكون قاسي عليكي في وقت من الأوقات، فـ والله العظيم بيكون خوفاً عليكي وغيرة عليكي مش أكتر، لأن غلاوتك عندي متتوصفش. 💕</p>
+                <p style="animation-delay: 3.2s;">ويا ريت بقى بنوتي العبيطة تبطل نكد وتفهم إني مستحيل أستحمل زعلك، لأن ضحكتك دي هي الحاجة الوحيدة اللي بتهون عليا أي حاجة، ومن غيرها يومي ميبقاش ليه طعم. 🥰</p>
+                <p style="animation-delay: 4.8s;">إنتي مش مجرد حد عادي في حياتي، إنتي الأمان اللي لجأت ليه، والضحكة اللي بتطلع من قلب بجد، والبنوتة اللي خطفت عيني وقلبي من أول لحظة. 🌸</p>
+                <p style="animation-delay: 6.2s;">بوعدك إني هفضل دايماً جنبك وسند ليكي في كل خطوة، وعمري في حياتي ما هبعد عنك مهما حصل، لأنك بقيتي حتة مني ومن مستقبلي. 👑</p>
+                <p style="animation-delay: 7.5s;">الموقع الصغير ده هيقعد دايماً شاهد على حبنا، ومكاننا السري الخاص بينا لوحدنا.. بحبك يا أحلى ياسمين في الدنيا كلها وعيني مش هتشوف غيرك أبداً. ❤️✨</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const bg = document.getElementById('bgHearts');
+        for (let i = 0; i < 25; i++) {
+            let h = document.createElement('div');
+            h.className = 'heart-sparkle'; h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDelay = Math.random() * 5 + 's';
+            h.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            bg.appendChild(h);
+        }
+
+        // تشغيل تمهيدي للأغنية لتخطي حجب المتصفح
+        function initAudio() {
+            let audio = document.getElementById('bgAudio');
+            audio.play().then(() => {
+                // لو اشتغلت تمام نثبتها
+            }).catch(() => {
+                // المتصفح مستني حركة، مفيش مشكلة
+            });
+        }
+
+        function validateDate() {
+            // تشغيل الصوت بمجرد الضغط لتخطي حظر الأوتوبلاي
+            initAudio();
+
+            let input = document.getElementById('dateInput').value.trim();
+            let cleaned = input
+                .replace(/[٠١٢٣٤٥٦٧٨٩]/g, function (d) { return d.charCodeAt(0) - 1632; })
+                .replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (d) { return d.charCodeAt(0) - 1776; })
+                .replace('-', '/')
+                .replace('\\', '/');
+            
+            if (cleaned === "14/11" || cleaned === "14\11") {
+                document.getElementById('dateError').style.display = 'none';
+                document.getElementById('step-date').style.display = 'none';
+                document.getElementById('step-name').style.display = 'block';
+            } else {
+                document.getElementById('dateError').style.display = 'block';
+            }
+        }
+
+        function validateName() {
+            let input = document.getElementById('nameInput').value.trim().toLowerCase();
+            if (input === "ياسمين" || input === "yasmin" || input === "yasmine") {
+                document.getElementById('nameError').style.display = 'none';
+                document.getElementById('step-name').style.display = 'none';
+                document.getElementById('step-secret').style.display = 'block';
+                
+                // التأكيد النهائي على تشغيل الصوت في الشاشة الأخيرة
+                let audio = document.getElementById('bgAudio');
+                audio.play().catch(e => console.log("تحميل"));
+            } else {
+                document.getElementById('nameError').style.display = 'block';
+            }
+        }
+
+        function toggleMusic() {
+            let audio = document.getElementById('bgAudio');
+            if (audio.paused) { audio.play(); } else { audio.pause(); }
+        }
+    </script>
+</body>
+</html>
